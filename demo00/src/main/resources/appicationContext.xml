@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.1.xsd">
+	
+<!-- 스피커가 먼저 bean으로 있어야한다 bean이 따로 스피커 등록할 수 있게 해주고, 등록되어있는 bean 중에 injection하겠다는게 constructor부분
+	<bean id="speaker" class="com.yedam.app.spring.Speaker" />
+	<bean id="tv" class="com.yedam.app.spring.SamsungTV">
+	생성자 방식 : 생성자에 값 주입 
+		<constructor-arg ref="speaker"/> 
+		
+	setter 방식 : setter
+		<property name="speaker" ref="speaker" />
+	</bean> -->
+
+<context:component-scan base-package="com.yedam.app.spring"/>
+</beans>
