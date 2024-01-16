@@ -3,16 +3,21 @@
     xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd"    version="3.1">
 
 	<!-- The definition of the Root Spring Container shared by all Servlets and Filters -->
+
+	<!-- 서블릿은 특정한 파일을 기반으로 읽어들인다: 내부의 파일을 보면 알 수 있다 밑에 servlet-context.xml -->
+	<!-- 얘를 기반으로  -->
 	<context-param>
 		<param-name>contextConfigLocation</param-name>
-		<param-value>/WEB-INF/spring/root-context.xml</param-value>
+		<param-value>/WEB-INF/spring/*-context.xml</param-value>
 	</context-param>
 	
+	<!-- 읽어들이고  -->
 	<!-- Creates the Spring Container shared by all Servlets and Filters -->
 	<listener>
 		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
 	</listener>
 
+	<!-- 웹과 관련된 부분 전체적 총괄: 이 부분은 거의 건드릴 일이 없다 -->
 	<!-- Processes application requests -->
 	<servlet>
 		<servlet-name>appServlet</servlet-name>
@@ -28,5 +33,21 @@
 		<servlet-name>appServlet</servlet-name>
 		<url-pattern>/</url-pattern>
 	</servlet-mapping>
+	
+	<!-- filter List -->
+	<!-- 경로를 기반으로 무언가가 넘어올 때 인코딩 등을 체크할 때에 중간에 끼어들어서 중간에 처리해서 넘겨줌, 즉 보조기능을 수행함 필터는 하나 이상 존재 가능 -->
+	<filter>
+		<filter-name>encodingFilter</filter-name>
+		<filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class>
+		<init-param>
+	  		<param-name>encoding</param-name>
+	  		<param-value>utf-8</param-value>
+		</init-param>
+	</filter>
+	
+	<filter-mapping>
+		<filter-name>encodingFilter</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
 
 </web-app>

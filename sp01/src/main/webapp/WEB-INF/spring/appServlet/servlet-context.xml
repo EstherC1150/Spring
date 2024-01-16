@@ -8,19 +8,23 @@
 		http://www.springframework.org/schema/context https://www.springframework.org/schema/context/spring-context.xsd">
 
 	<!-- DispatcherServlet Context: defines this servlet's request-processing infrastructure -->
-	
+
+	<!-- 하위의 애들을 다 읽어들이는... -->
 	<!-- Enables the Spring MVC @Controller programming model -->
 	<annotation-driven />
 
+	<!--정적인 파일들에 대해서 물리적인 위치를 전부 경로로 매핑하는 애임 -->
 	<!-- Handles HTTP GET requests for /resources/** by efficiently serving up static resources in the ${webappRoot}/resources directory -->
 	<resources mapping="/resources/**" location="/resources/" />
 
+	<!-- jsp파일을 처리하는 부분을 알려주는 것, 경로를 알려주는 애, 경로를 완성해준다, 하나만 존재하지 않음: resolve -->
 	<!-- Resolves views selected for rendering by @Controllers to .jsp resources in the /WEB-INF/views directory -->
 	<beans:bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
 		<beans:property name="prefix" value="/WEB-INF/views/" />
 		<beans:property name="suffix" value=".jsp" />
 	</beans:bean>
 	
+	<!-- 여기서 가장 중요한 태그: 기본적으로 Bean에 대한 정보를 전부 다 읽어들이고 처리한다 -->
 	<context:component-scan base-package="com.yedam.app" />
 	
 	
