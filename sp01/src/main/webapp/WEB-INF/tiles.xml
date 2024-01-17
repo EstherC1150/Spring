@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE tiles-definitions PUBLIC
+       "-//Apache Software Foundation//DTD Tiles Configuration 3.0//EN"
+       "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
+<tiles-definitions>
+
+	<!-- 모든 메뉴에 공통적으로 적용하려는 파일들을 따로 모아서 정의 한 용도, 미리 설정을 따로 하고 -->
+	<definition name="mainTemplate" template="/WEB-INF/views/layout/default_layout.jsp">
+		<put-attribute name="header" value="/WEB-INF/views/layout/default_header.jsp"></put-attribute>
+		<put-attribute name="footer" value="/WEB-INF/views/layout/default_footer.jsp"></put-attribute>
+	</definition>
+	
+	<!-- 얘가 메뉴별로 변경된 사항을 추가해서 완성하는 애 -->
+	<!-- 특정한 포맷을 유지하는 경우 그 포맷에 대해 name에 정의하면 된다 *를 기반으로 그러면 이 *가 경로에 사용될 수 있음-->
+	<!-- 예를 들어 판매자를 적용하는 경우 extends에 판매자 또는 관리자 하고 추가하면 된다 -->
+	<definition name="*/*" extends="mainTemplate">
+		<!-- 상속받아서, 아직 완성되지 않은 content를 어떤식으로 처리하겠습니다 하고 추가로 설정 -->
+		<!-- 첫번째 아스타가 1이라는 곳에 들어가고 두번째가 2라는 위치에 들어가게 된다 -->
+		<put-attribute name="content" value="/WEB-INF/views/{1}/{2}.jsp"/>
+	</definition>
+	
+	<!-- 순서가 중요하다 타일의 또 다른 definition을 추가하게 된다면 -->
+	<definition name="home" extends="mainTemplate">
+		<put-attribute name="content" value="/WEB-INF/views/home.jsp"/>
+	</definition>	
+</tiles-definitions>
