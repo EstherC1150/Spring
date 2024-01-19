@@ -57,7 +57,7 @@
 	document.querySelector('form[name="insertForm"]')
 			.removeEventListener('submit', boardInsertJs);
 	//jQuery
-	//일단은 가져와서, submin에 on으로 이벤트 걸기
+	//일단은 가져와서, submit에 on으로 이벤트 걸기
 	$('form[name="insertForm"]').on('submit', boardInsertJq);
 
 	function boardInsertJq(event) {

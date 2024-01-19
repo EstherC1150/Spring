@@ -9,9 +9,9 @@
 
   <ul class="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0">
     <li><a href="${pageContext.request.contextPath}/" class="nav-link px-2 link-secondary">Home</a></li>
-<%--     <li><a href="${pageContext.request.contextPath}/empList" class="nav-link px-2" >전체 사원 조회</a></li> --%>
-<%--     <li><a href="${pageContext.request.contextPath}/empInsert" class="nav-link px-2" >사원 정보 등록</a></li> --%>
-    <li><a href="${pageContext.request.contextPath}/boardList" class="nav-link px-2" >전체 글 조회</a></li>
+    <li><a href="${pageContext.request.contextPath}/empList" class="nav-link px-2" >전체 사원 조회</a></li>
+    <li><a href="${pageContext.request.contextPath}/empInsert" class="nav-link px-2" >사원 정보 등록</a></li>
+    <li><a href="${pageContext.request.contextPath}/boardList" class="nav-link px-2" >게시판 조회</a></li>
     <li><a href="${pageContext.request.contextPath}/boardInsert" class="nav-link px-2" >글 등록</a></li>
     <li><a href="#" class="nav-link px-2">FAQs</a></li>
     <li><a href="#" class="nav-link px-2">About</a></li>

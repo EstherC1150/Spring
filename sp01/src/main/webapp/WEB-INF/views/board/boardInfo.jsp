@@ -23,14 +23,14 @@
 			</tr>
 			<tr>
 				<th>이미지</th>
-				<td><img src="<c:url value='/resources/${boardInfo.image}'/>"></td>
+				<td><img style="width:200px;" src="<c:url value='/resources/${boardInfo.image}'/>"></td>
 			</tr>
 			<tr>
 				<th>작성날짜</th>
-				<td>${boardInfo.regdate}</td>
+				<td><fmt:formatDate value="${boardInfo.regdate}" pattern="yyyy년MM월dd일 HH시mm분ss초"/></td>
 			</tr>
 		</table>
-		<button class="btn btn-primary" type="button">수정</button>
-		<button class="btn btn-warning" type="button">삭제</button>
+		<button class="btn btn-primary" onclick="location.href='boardUpdate?bno=${boardInfo.bno}'" type="button">수정</button>
+		<button class="btn btn-warning" onclick="location.href='boardDelete?bno=${boardInfo.bno}'" type="button">삭제</button>
 </div>
 

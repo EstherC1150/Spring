@@ -51,6 +51,7 @@
 					, #{image}
 				)
 	</insert>
+	<!-- 수정 -->
 	<update id="updateBoard" parameterType="BoardVO">
 		UPDATE tbl_board_01
 			SET
@@ -61,6 +62,7 @@
 				image = #{image}
 		WHERE bno = #{bno}
 	</update>
+	<!-- 삭제 -->
 	<delete id="deleteBoard" parameterType="int">
 		DELETE FROM tbl_board_01
 		WHERE bno = #{bno}

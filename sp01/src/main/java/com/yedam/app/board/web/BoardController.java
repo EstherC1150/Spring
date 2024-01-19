@@ -8,6 +8,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.yedam.app.board.service.BoardService;
 import com.yedam.app.board.service.BoardVO;
@@ -46,13 +49,24 @@ public class BoardController {
 	}
 	//수정 - 페이지: URI - boardUpdate / PARAMETER - BoardVO / RETURN - board/boardUpdate
 	@GetMapping("boardUpdate")
-	public String updateBoardInfoForm() {
+	public String boardUpdateForm(BoardVO boardVO, Model model) {
+		BoardVO findVO = boardService.getBoardInfo(boardVO);
+		model.addAttribute("boardInfo", findVO);
 		return "board/boardUpdate";
 	}
 	//수정 - 처리: URI - boardUpdate / PARAMETER - BoardVO / RETURN - 수정결과 데이터(Map)
+	//=> Ajax
 	@PostMapping("boardUpdate")
-	public Map<String, Object> boardUpdateProcess(BoardVO boardVO) {
+	@ResponseBody
+	public Map boardUpdateProcess(@RequestBody BoardVO boardVO, Model model) { //단순한 커맨드 객체
 		return boardService.updateBoardInfo(boardVO);
+	}
+	
+	//삭제
+	@GetMapping("boardDelete")
+	public String boardDelete(@RequestParam Integer bno) {
+		boardService.deleteBoardInfo(bno);
+		return "redirect:boardList";
 	}
 	
 }
