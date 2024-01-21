@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="com.yedam.java.book.mapper.BookMapper">
+	<!-- 도서전체조회 -->
+	<select id="selectBookList" resultType="BookVO">
+		SELECT book_no
+				, book_name
+				, book_covering
+				, book_date
+				, book_price
+				, book_publisher
+				, book_info
+		FROM BOOK_TBL_06
+		ORDER BY book_no
+	</select>
+	
+	<!-- 도서대여조회 -->
+	<select id="selectBookRentList" resultType="BookRentVO">
+		SELECT r.book_no as book_no
+				, b.book_name as book_name
+				, sum(r.rent_price)as sum_price
+				, count(r.rent_status) cnt_stat
+		FROM RENT_TBL_06 r JOIN BOOK_TBL_06 b ON r.book_no = b.book_no
+		GROUP BY r.book_no, b.book_name
+		ORDER BY r.book_no
+	</select>
+	
+	<select id="insertBookNum" resultType="int">
+		SELECT NVL(MAX(book_no), 0) + 1
+		FROM BOOK_TBL_06 
+	</select>
+	
+	<!-- 등록 -->
+	<insert id="insertBook" parameterType="BookVO">
+	<!-- selectKey 사용해서 num... -->
+	<!-- <selectKey keyProperty="bookNo" resultType="int" order="BEFORE"> -->
+	<!-- 	SELECT NVL(MAX(book_no), 0) + 1 -->
+	<!-- 	FROM BOOK_TBL_06 -->
+	<!-- </selectKey> -->
+		INSERT INTO BOOK_TBL_06
+				(
+					book_no
+					, book_name
+					, book_covering
+					, book_date
+					, book_price
+					, book_publisher
+					, book_info
+				)
+				VALUES
+				(
+					#{bookNo}
+					, #{bookName}
+					, #{bookCovering}
+					, #{bookDate}
+					, #{bookPrice}
+					, #{bookPublisher}
+					, #{bookInfo}
+				)
+	</insert>
+</mapper>
