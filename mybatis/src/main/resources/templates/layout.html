@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<!-- header -->
+	<header>
+		<ul>
+			<li>사원관리</li>
+			<li>부서관리</li>
+		</ul>
+	</header>
+<!-- content -->
+	<section layout:fragment="content"></section>
+	
+<!-- footer -->
+	<!-- fragments	 -->
+	<!-- <div class="divfooter" th:insert="~{footer}"> -->
+	<!-- </div> -->
+	<div class="divfooter" th:replace="~{footer}">
+		<!-- 태그 빠지고 들어옴 -->
+	</div>
+	<!-- <div class="divfooter" th:insert="~{footer::copy}"> -->
+	<!-- </div> -->
+</body>
+</html>
